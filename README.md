@@ -253,7 +253,7 @@ Sistema de contratos y operaciones.
 # 📂 Estructura del proyecto
 
 ```bash
-Web3RentalDashboard/
+PlataformaGestionAlquileresweb3.0/
 │
 ├── public/
 │   ├── css/
@@ -364,7 +364,7 @@ Inversión → Evento → Contrato → Alquiler → Dashboard → Reportes
 ## 1️⃣ Clonar repositorio
 
 ```bash
-git clone https://github.com/usuario/web3-rental-dashboard.git
+git clone https://github.com/isairey/PlataformaGestionAlquileresweb3.0.git
 ```
 
 ---
@@ -372,7 +372,7 @@ git clone https://github.com/usuario/web3-rental-dashboard.git
 ## 2️⃣ Entrar al proyecto
 
 ```bash
-cd Web3RentalDashboard
+cd PlataformaGestionAlquileresweb3.0
 ```
 
 ---
@@ -413,27 +413,7 @@ http://localhost:3000
 
 ---
 
-# 📸 Vista previa
 
-## 🖥️ Interfaces del sistema
-
-<div align="center">
-
-### 📊 Dashboard financiero
-![Dashboard](https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1200)
-
-### 💰 Gestión de inversiones
-![Investment](https://images.unsplash.com/photo-1554224155-6726b3ff858f?q=80&w=1200)
-
-### 🎉 Gestión de eventos
-![Events](https://images.unsplash.com/photo-1511578314322-379afb476865?q=80&w=1200)
-
-### 🛒 Gestión de artículos
-![Inventory](https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=1200)
-
-</div>
-
----
 
 # 👥 Roles del sistema
 
@@ -507,7 +487,7 @@ git push origin feature/nueva-funcionalidad
 
 <div align="center">
 
-## Web3 Full Stack Developer
+## Isai Reyes - Web3 Full Stack Developer
 
 Desarrollador apasionado por plataformas Web 3.0, dashboards empresariales y arquitecturas descentralizadas 🚀
 
