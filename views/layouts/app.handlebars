@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ga Deco - Aplicativo</title>
+
+    <!-- favicon-->
+    <link rel="icon" href="/app/img/favicon.ico"> 
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="/app/css/app.css">
+
+    <!--Material icons-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+</head>
+<body>
+<header>
+    <p class="text-light" >Bem vindo: {{userGaDeco.dataValues.name}}
+        <a href="/aplicativo/logout" class="btn btn-warning btn-sm"><span class="material-icons">cancel</span>  SAIR</a>
+        <a href="/aplicativo/account" class="btn btn-primary btn-sm"><span class="material-icons">person_outline</span> Account</a>
+    </p>
+</header>
+
+<div class="container-fuild">
+    <div class="row">
+            <div class="col-sm-2">
+            <div class="menu">
+                <a href="/aplicativo"><img class="menu-logo img-thumbnail" src="/app/img/logo.png" titl="Início do Aplicativo"></a>
+                <p class="text-warning">MAIN NAVIGATION: </p>
+                <ul class="list-group">
+                    <li class="item">
+                        <span class="material-icons">shopping_cart</span> Artigos
+                        <ul class="sub-menu">
+                            <li><a href="/aplicativo/article/add" class="btn btn-secondary btn-block">Adicionar</a></li>
+                            <li><a href="/aplicativo/article/list" class="btn btn-secondary btn-block">
+                            <span class="btn-menu-title">Gerenciar</span>
+                            <span class="material-icons text-light" title="Editar">edit</span>
+                            <span class="material-icons text-light" title="Remover">remove_circle_outline</span>
+                            </a></li>
+                        </ul>
+                    </li>
+                    <li class="item">
+                        <span class="material-icons">cake</span> Eventos
+                        <ul class="sub-menu">
+                            <li><a href="/aplicativo/event/add" class="btn btn-secondary btn-block">Adicionar</a></li>
+                            <li><a href="/aplicativo/event/list" class="btn btn-secondary btn-block">
+                            <span class="btn-menu-title">Gerenciar</span>
+                            <span class="material-icons text-light" title="Editar">edit</span>
+                           <span class="material-icons text-light" title="Remover">remove_circle_outline</span>
+                           <span class="material-icons" title="Gerenciar contrato">library_add</span>
+                           </a></li>
+                        </ul>
+                    </li>
+                    <li class="item">
+                        <span class="material-icons">shopping_cart</span> Ferramentas
+                        <ul class="sub-menu">
+                            <li><a href="/aplicativo/gadget/calendar" class="btn btn-secondary btn-block">
+                            <span class="btn-menu-title">Agenda GaDeco</span>
+                            </a></li>
+                        </ul>
+                    </li>
+                    <li class="item">
+                        <span class="material-icons">home_repair_service</span> Ferramentas Externas
+                        <ul class="sub-menu">
+                            <li><a href="https://calendar.google.com/calendar/u/0/r?tab=wc" class="btn btn-secondary btn-block">Agenda Google</a></li>
+                            <li><a href="https://mail.google.com/mail/u/0/" class="btn btn-secondary btn-block">E-mail</a></li>
+                            <li><a href="https://web.whatsapp.com/" class="btn btn-secondary btn-block">WhatsApp</a></li>
+                            <li><a href="https://www.google.com.br/maps" class="btn btn-secondary btn-block">Mapa da cidade</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div><!--./menu-->
+            </div><!--./col-sm-2-->
+            
+            <div class="col-sm-10 appAllFrame">
+                <div class="appframe">
+                    {{{body}}}
+                </div><!--./appframe-->
+            </div><!--./col-sm-10-->
+    </div><!--./row-->
+</div>
+
+<footer class="mt-2">
+    <p>GA Deco 2020 - Todos os direitos reservados </p>
+</footer>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script>
+    
+    // Get Article for delete or update
+    $('.articleRemove, .articleUpdate').click(function(){
+
+        let idArticle = $(this).attr('id');
+
+        $.ajax({
+            url: '/aplicativo/article/detail/' + idArticle,
+            type: 'get',
+        })
+        .done(function(res){
+            $('#deleteArticle #name , #updateArticle #name').val(res[0].name);
+            $('#deleteArticle #acquisition, #updateArticle #acquisition').val(res[0].acquisition);
+            $('#deleteArticle #paid, #updateArticle #paid').val(res[0].paid);
+            $('#deleteArticle #description, #updateArticle #description').val(res[0].description);
+            $('#deleteArticle #idArticle, #updateArticle #idArticle').val(res[0].id);
+        })
+        .fail(function(res){
+            $('.respostServen').html('Não foi possível recuperar o elemento' + res)
+        })
+    })
+
+    // Confirme delete Article
+    $('#yesExcluirArticle').click(function(){
+
+        // by clicking send destroy the buttons
+        $('.modal-footer').html("<button type='button' class='close btn-exit-Modal' data-dismiss='modal' aria-label='Close'>Sair</button>");
+
+        let idArticle = $('#idArticle').val();
+
+        $.ajax({
+            headers: {
+                'CSRF-Token': "{{_csrfToken}}"
+            },
+            url: '/aplicativo/article/delete',
+            type: 'post',
+            data: {
+                id: idArticle,
+            },
+        })
+        .done(function(res){
+            $('.respostServen').html("<span class='text-primary'><span class='material-icons'>check_circle_outline</span> Excluído com sucesso</span>");
+        })
+        .fail(function(res){
+            $('.respostServen').html("<span class='text-warning'><span class='material-icons'>error_outline</span> Não foi possível excluir</span>");
+        })
+
+        // Refrash page after close modal
+        $('#deleteArticle').on('hidden.bs.modal', function (e) {
+            document.location.reload();
+        })
+    })
+
+    // Do update Article
+    $('#yesUpdateArticle').click(function(){
+
+        // by clicking send destroy the buttons
+        $('.modal-footer').html("<button type='button' class='close btn-exit-Modal' data-dismiss='modal' aria-label='Close'>Sair</button>");
+
+        let idArticle = $('#idArticle').val();
+        let nameArticle = $('#updateArticle #name').val();
+        let acquisitionArticle = $('#updateArticle #acquisition').val();
+        let paidArticle = $('#updateArticle #paid').val();
+        let descriptionArticle = $('#updateArticle #description').val();
+
+        $.ajax({
+            headers: {
+                'CSRF-Token': "{{_csrfToken}}"
+            },
+            url: '/aplicativo/article/update',
+            type: 'post',
+            data: {
+                id: idArticle,
+                name: nameArticle,
+                acquisition: acquisitionArticle,
+                paid: paidArticle,
+                description: descriptionArticle,
+            },
+        })
+        .done(function(res){
+            $('.respostServen').html("<span class='text-primary'><span class='material-icons'>check_circle_outline</span> Atualizado com sucesso</span>");
+        })
+        .fail(function(res){
+            $('.respostServen').html("<span class='text-warning'><span class='material-icons'>error_outline</span> Não foi possível atualizar</span>");
+        })
+
+        // Refrash page after close modal
+        $('#updateArticle').on('hidden.bs.modal', function (e) {
+            document.location.reload();
+        })
+    })
+
+
+    /*
+    *
+    * Manager Event
+    *
+    */
+    // Get Event for delete or update
+    $('.eventRemove, .eventUpdate').click(function(){
+
+        let idEvent = $(this).attr('id');
+        let classEvent = $(this).attr('class');
+
+        $.ajax({
+            url: '/aplicativo/event/detail/' + idEvent,
+            type: 'get',
+        })
+        .done(function(res){
+            $('#deleteEvent #date , #updateEvent #date').val(res[0].date);
+            $('#deleteEvent #address, #updateEvent #address').val(res[0].address);
+            $('#deleteEvent #client, #updateEvent #client').val(res[0].client);
+            $('#deleteEvent #idEvent, #updateEvent #idEvent').val(res[0].id);
+        })
+        .fail(function(res){
+            $('.respostServen').html('Não foi possível recuperar o elemento' + res)
+        })
+    })
+
+    // Confirme delete Event
+    $('#yesExcluirEvent').click(function(){
+
+        // by clicking send destroy the buttons
+        $('.modal-footer').html("<button type='button' class='close btn-exit-Modal' data-dismiss='modal' aria-label='Close'>Sair</button>");
+
+        let idEvent = $('#idEvent').val();
+
+        $.ajax({
+            headers: {
+                'CSRF-Token': "{{_csrfToken}}"
+            },            
+            url: '/aplicativo/event/delete',
+            type: 'post',
+            data: {
+                id: idEvent,
+            },
+        })
+        .done(function(res){
+            $('.respostServen').html("<span class='text-primary'><span class='material-icons'>check_circle_outline</span> Excluído com sucesso</span>");
+        })
+        .fail(function(res){
+            $('.respostServen').html("<span class='text-warning'><span class='material-icons'>error_outline</span> Não foi possível excluir</span>");
+        })
+
+        // Refrash page after close modal
+        $('#deleteEvent').on('hidden.bs.modal', function (e) {
+            document.location.reload();
+        })
+    })
+
+    // Do update Event
+    $('#yesUpdateEvent').click(function(){
+
+        // by clicking send destroy the buttons
+        $('.modal-footer').html("<button type='button' class='close btn-exit-Modal' data-dismiss='modal' aria-label='Close'>Sair</button>");
+
+        let idEvent = $('#idEvent').val();
+        let dateEvent = $('#updateEvent #date').val();
+        let addressEvent = $('#updateEvent #address').val();
+        let clientEvent = $('#updateEvent #client').val();
+
+        $.ajax({
+            headers: {
+                'CSRF-Token': "{{_csrfToken}}"
+            },            
+            url: '/aplicativo/event/update',
+            type: 'post',
+            data: {
+                id: idEvent,
+                date: dateEvent,
+                address: addressEvent,
+                client: clientEvent
+            },
+        })
+        .done(function(res){
+            $('.respostServen').html("<span class='text-primary'><span class='material-icons'>check_circle_outline</span> Atualizado com sucesso</span>");
+        })
+        .fail(function(res){
+            $('.respostServen').html("<span class='text-warning'><span class='material-icons'>error_outline</span> Não foi possível atualizar</span>");
+        })
+
+        // Refrash page after close modal
+        $('#updateEvent').on('hidden.bs.modal', function (e) {
+            document.location.reload();
+        })
+    })
+
+
+
+    
+    /*
+    *
+    * Manager Contract Event Article
+    *
+    */
+     $(document).ready(function () {
+         // Get Id Event
+         let idEvent = $('.idEvent').attr('id');
+
+         // adiciona o value=idEvent em um form->input->type->hidden
+         // para corrigir uma deficiência do Handlebars
+         $('.event_id').val(idEvent);
+
+         // Get Element Data Event
+        $.ajax({
+            url: '/aplicativo/contract/manager/event/' + idEvent,
+            type: 'get',
+        })
+        .done(function(articleForEvent){
+
+            var total = 0;
+            for (var i = 0; i < articleForEvent.length; i++)
+            {
+                let  oldTd = $(".contract-article tbody").html();
+                total += articleForEvent[i].value;
+
+                $(".contract-article tbody").html(
+                oldTd + 
+                "<tr>" +
+                    "<td>" + articleForEvent[i].article.name + "</td>"+
+                    "<td>" + articleForEvent[i].article.acquisition + "</td>"+
+                    "<td> R$ " + articleForEvent[i].article.paid.toFixed(2) + "</td>"+
+                    "<td>" + articleForEvent[i].article.description + "</td>"+
+                    "<td> R$ " + articleForEvent[i].value.toFixed(2) + "</td>"+
+                    "<td>" + "<form method=\"POST\" action=/aplicativo/contract/article/delete> <input name=\"idArticle\" type=hidden value=" + articleForEvent[i].article.id + " ><input name=\"idEvent\" type=hidden value=" + idEvent + "><input type=\"hidden\" name=\"_csrf\" value=\"{{_csrfToken}}\"><input type=\"submit\" value=\"Excluir\"></form></td>"+
+                "</tr>");
+            }
+
+            // Inner total article
+            $(".contract-article tbody tr").last().after("<tr><td colspan='6'><span class='articleTotal'>Total: R$ " + total.toFixed(2) + " (para receber)</span></td></tr>");
+        })        
+        .fail(function(error){
+            $(".contract-event tbody, .contract-article tbody").html("Erro get data " + error)
+            console.log("Erro get data " + error);
+        })
+
+        /*Confirm excluir*/
+        $('.forFormExcluir').click(function(){
+            alert('Tem certeza');
+        });
+     });
+
+
+/*
+*
+*
+* gadget Home
+*
+*/
+$(document).ready(function () {
+
+        $.ajax({
+            url: '/aplicativo/gadget/investment/',
+            type: 'get',
+        })
+        .done(function(investment){
+            $('.gadget-investment').text("R$: " + investment.sum);
+        })
+
+        $.ajax({
+            url: '/aplicativo/gadget/return/',
+            type: 'get',
+        })
+        .done(function(returnInvest){
+            $('.gadget-returnInvest').text(returnInvest.returnInvest.toFixed(2) +"%");
+        })
+
+        $.ajax({
+            url: '/aplicativo/gadget/event/total',
+            type: 'get',
+        })
+        .done(function(total){
+            $('.gadget-totalEvent').text(total.total);
+        })
+
+        $.ajax({
+            url: '/aplicativo/gadget/article/total',
+            type: 'get',
+        })
+        .done(function(total){
+            $('.gadget-totalArticle').text(total.total);
+        })
+
+        $.ajax({
+            url: '/aplicativo/gadget/contract/max',
+            type: 'get',
+        })
+        .done(function(max){
+            $('.gadget-maxContract').text(max.max);
+        })
+});
+
+</script>
+
+<!--Calendar-->
+<script src="/app/js/zabuto_calendar.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/app/css/zabuto_calendar.min.css">
+<script>
+    $(document).ready(function () {
+        $("#calendarZabuto").zabuto_calendar({
+            language: "pt",
+            today: true,
+        });
+    });
+</script>
+
+<!--Graphic ChartJs-->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+<script>
+$(document).ready(function () {
+
+    $.ajax({
+            url: '/aplicativo/gadget/contract/lastrent',
+            type: 'get',
+        })
+        .done(function(lastrent){
+
+            lastRent= "[";
+            for(var i=0; i < lastrent.contract.length; i++)
+            {
+                lastRent +=lastrent.contract[i].value + ",";
+                if( i + 1 == lastrent.contract.length){
+                    lastRent += lastrent.contract[i].value + "]";
+                }
+            }
+
+            var rentsContract = JSON.parse(lastRent);
+
+            var ctx = document.getElementById('lastRend').getContext('2d');
+            var chart = new Chart(ctx, {
+                // The type of chart we want to create
+                type: 'line',
+
+                // The data for our dataset
+                data: {
+                    labels: ['1', '2', '3', '4', '5', '6', '7'],
+                    datasets: [{
+                        label: 'Últimos alugueis',
+                        backgroundColor: 'rgba(255, 99, 132,0.2)',
+                        borderColor: 'rgb(255, 99, 132)',
+                        data: rentsContract
+                    }]
+                },
+
+                // Configuration options go here
+                options: {}
+            });
+    })
+});
+</script>
+</body>
+</html>

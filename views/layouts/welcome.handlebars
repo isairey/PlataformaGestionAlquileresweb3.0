@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ga Deco - Welcome</title>
+
+    <!-- favicon-->
+    <link rel="icon" href="/app/img/favicon.ico"> 
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="welcome/css/welcome-custom.css">
+</head>
+<body>
+
+<div class="container-fluid">
+<div class="homepage-hero-module">
+  <div class="video-container">
+
+<header>
+    <div class="top-bar-welcome">
+        {{#if userGaDeco.dataValues.name}}
+            <a href="/aplicativo/account" class="btn btn-success">
+                {{userGaDeco.dataValues.name}}
+            </a>  -
+            <a href="/aplicativo/logout" class="btn btn-success">
+                Sair
+            </a>  -           
+        {{else}}
+            <a href="/auth/facebook" class="btn btn-success">
+                Nova conta ou Login
+            </a>  - 
+        {{/if}}
+        <a class="btn btn-success" href="/about">Sobre nós</a>
+    </div>
+</header>
+
+
+    <div>
+        {{{body}}}
+    </div>
+
+    <div class="filter"></div>
+    <video autoplay loop muted playsinline src="/welcome/videos/welcome-background.mp4" class="fillWidth"></video>
+    <div class="poster hidden-video-background">
+      <img src="/welcome/img/welcome_background.jpg" alt="Bel Masters, Sites, Sistemas, Aplicativos, Marketing">
+    </div>
+
+<footer class="flex-center footer-welcome">
+    <p>GA Deco 2020 - Todos os direitos reservados </p>
+</footer>
+
+</div>
+</div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<!--Video Welcome Background-->
+<script type="text/javascript" src="/welcome/js/background_video.js"></script>
+</body>
+</html>

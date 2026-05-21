@@ -1,0 +1,48 @@
+<div class="col-sm-7 offset-sm-1">
+<div class="container">
+<h3>Olá, {{userGaDeco.dataValues.name}}</h3>
+<p>Esses são seus dados cadastrados que nós temos acesso: </p>
+
+
+  <table class="table table-striped table-hover table-bordered">
+    <thead>
+      <tr>
+        <th>Tipo</th>
+        <th>Valor</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="bg-dark text-light">
+        <td>Nome</td>
+        <td>{{userGaDeco.dataValues.name}}</td>
+      </tr>
+      <tr>
+        <td>Id da conta:</td>
+        <td>{{userGaDeco.dataValues.authId}}</td>
+      </tr>
+      <tr class="bg-primary text-light">
+        <td>E-mail: </td>
+        <td>
+            {{#if userGaDeco.dataValues.email}}
+                {{userGaDeco.dataValues.email}}
+            {{else}}
+                Não cadastrado
+            {{/if}}
+        </td>
+      </tr>
+      <tr>
+        <td>Tipo de conta:</td>
+        <td>{{userGaDeco.dataValues.role}}</td>
+      </tr>
+      <tr class="bg-primary text-light">
+        <td>Criada em:</td>
+        <td>{{userGaDeco.dataValues.createdAt}}</td>
+      </tr>
+      <tr>
+        <td>Atualizada em:</td>
+        <td>{{userGaDeco.dataValues.updatedAt}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+</div><!--./col-sm-5-->

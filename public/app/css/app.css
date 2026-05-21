@@ -1,0 +1,235 @@
+body
+{
+    background-color: #f1f1f1;
+}
+header
+{
+    height: 47px;
+    background-color: black;
+}
+header p
+{
+    padding-top: 7px;
+    margin-right: 50px;
+    text-align: right;
+}
+header .material-icons
+{
+    font-size: 15px;
+}
+
+/* Menu */
+.menu
+{
+    border-radius: 0px;
+    background-color: #222d32;
+    color: white;
+    border-right: 1px solid white;
+    box-shadow: 2px 5px whitesmoke;
+    margin-right: -30px;
+    padding-right: -10px;
+
+    height: 100%;
+}
+.menu p
+{
+    margin-left: 15px;
+    margin-right: 15px;
+    padding: 5px 10px 5px 10px;
+    background-color: black;
+    text-align: center;
+}
+.menu-logo
+{
+    padding-top: 30px;
+    margin-left: 24px;
+    width: 184px;
+    margin-bottom: 30px;
+    background-color: #6a7d86;
+}
+.menu-logo:hover
+{
+    width: 190px;
+}
+.list-group
+{
+    margin-left: 10px;
+    list-style-type: none;
+    font-size: 14px !important;
+}
+.list-group .item
+{
+    margin-top: 20px;
+    font-weight: bold;
+    color: #999999
+}
+.list-group .material-icons
+{
+    font-size: 15px;
+    color: #999999
+}
+.sub-menu
+{
+    list-style-type: none;
+    padding-left: 20px;
+}
+.sub-menu a
+{
+    width: 230px;
+    margin: 2px 0px 2px -30px;
+    font-size: 14px !important;
+}
+.sub-menu .btn-secondary:link, .sub-menu .btn-secondary:visited
+{
+    border: none !important;
+    text-align: left;
+}
+.sub-menu .btn-secondary span
+{
+    color: white;
+    display: inline-block;
+    text-align: left !important;
+    background-color: #0099cc;
+    padding: 1px;
+    padding-left: 2px;
+    border-radius: 4px;
+}
+.sub-menu .btn-secondary .btn-menu-title
+{
+    display: inline-block;
+    width: 150px;
+    background: none !important;
+}
+
+
+.appAllFrame
+{
+    background-image: url("/app/img/pexels-johannes-plenio-1103970.jpg");
+    background-position: center bottom;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.appframe .container
+{
+    margin: 30px;
+    margin-right: 0px;
+    margin-left: 10px;
+    padding: 20px;
+    border: 2px double #dfdfdf;
+    border-radius: 10px;
+
+    background-color: white;
+
+    -webkit-box-shadow: 0px 0px 8px 0px #000000; 
+    box-shadow: 0px 0px 8px 0px #000000;
+
+    max-height: 520px;
+    overflow: auto;
+
+    opacity: 0.95;
+}
+
+
+table thead tr
+{
+    text-transform: uppercase;
+    color: #333;
+    font-size: 11px;
+}
+table tbody td
+{
+    font-size: 14px !important;
+}
+.list-action a
+{
+    display: inline-table;
+    width: 15px;
+    font-size: 12px !important;
+    border-radius: 2px;
+    border: none;
+}
+.list-action .material-icons
+{
+    font-size: 12px;
+    color: white;
+    font-weight: bold;
+}
+.form-title
+{
+    padding: 3px 0px 3px 10px;
+    background-color: #86b791;
+    border-bottom: 1px solid #86b791;
+    color: white;
+    border-radius: 5px;
+}
+.articleTotal
+{
+    display: block;
+    text-align: right;
+    font-weight: 900;
+}
+/*Modal CSS*/
+.btn-exit-Modal
+{
+
+    border: 2px solid blueviolet !important;
+    padding: 5px 10px 5px 10px !important;
+    border-radius: 8px !important;
+    font-size: 19px !important;
+}
+
+
+
+/*Home*/
+.gadgetHome
+{
+    width: 190px;
+    height: 100px;
+
+    -webkit-box-shadow: 0px 0px 6px 0px #000000; 
+    box-shadow: 0px 0px 6px 0px #000000;    
+}
+.gadgetHome .material-icons
+{
+    margin-top: 0px;
+    font-size: 65px;
+    margin-top: 14px;
+    margin-left: 5px;
+    color: #7460ee;
+}
+.gadgetHome .material-icons:hover
+{
+    font-size: 68px !important;
+}
+.gadget-text, .gadget-value
+{
+    display: table;
+}
+.gadget-value
+{
+    font-weight: bold;
+    margin-left: 70px;
+    margin-top: -58px;
+}
+.gadget-text
+{
+    color: #777;
+    font-size: 16px;
+    margin-left: 70px;
+    margin-top: 0px;
+
+}
+.container-gadget{
+    border: none !important;
+
+    -webkit-box-shadow: 0px -7px 12px -10px #000000 !important; 
+    box-shadow: 0px -7px 12px -10px #000000 !important;
+}
+
+
+
+
+footer p 
+{
+    text-align: center;
+}

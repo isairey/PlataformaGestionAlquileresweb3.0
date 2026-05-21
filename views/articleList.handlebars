@@ -1,0 +1,124 @@
+<div class="container">
+  <h4>Visualize, atualize ou remova os <span class="badge badge-warning">artigos</span></h4>      
+  <table class="table">
+    <thead class="thead-light">
+      <tr>
+        <th>Nome</th>
+        <th>Data de compra</th>
+        <th>Valor Pago</th>
+        <th>Descrição</th>
+        <th>Última atualização</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+        {{#each articles }}
+        <tr>
+            <td>
+              {{dataValues.name}}
+              {{#if @first}}
+               <span class="badge badge-pill badge-success">New</span>
+              {{/if}}
+            </td>
+            <td>{{dataValues.acquisition}}</td>
+            <td>R$ {{dataValues.paid}}</td>
+            <td>{{dataValues.description}}</td>
+            <td>{{dataValues.updatedAt}}</td>
+            <td class="list-action">
+                <a href="#" class="articleUpdate btn btn-primary" id="{{dataValues.id}}" data-toggle="modal" data-target="#updateArticle"><span class="material-icons" title="Editar">edit</span></a>
+                <a href="#" class="articleRemove btn btn-danger" id="{{dataValues.id}}" data-toggle="modal" data-target="#deleteArticle"><span class="material-icons" title="Remover">remove_circle_outline</span></a>
+            </td>
+        </tr>
+        {{/each}}
+    </tbody>
+  </table>
+</div>
+
+
+<!-- Modal Delete-->
+<div class="modal fade" id="deleteArticle" tabindex="-1" role="dialog" aria-labelledby="deleteArticleLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteArticleLabel">Tem certeza que deseja excluir? </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <div class="form-group">
+              <label for="Nome">Nome:</label>
+              <input type="input" class="form-control" id="name" placeholder="Carregando..." name="name" disabled>
+          </div>
+          <div class="form-group">
+              <label for="acquisition">Data de compra:</label>
+              <input type="date" class="form-control" id="acquisition" placeholder="Carregando..." name="acquisition" disabled>
+          </div>
+          <div class="form-group">
+              <label for="paid">Valor R$:</label>
+              <input type="input" class="form-control" id="paid" placeholder="Carregando..." name="paid" disabled>
+          </div>
+          <div class="form-group">
+              <label for="description">Descrição:</label>
+              <textarea class="form-control" id="description" placeholder="Carregando..." name="description" disabled></textarea>
+          </div>
+          <div class="form-group">
+              <input type="hidden" id="idArticle" value="">
+          </div>
+          <div class="form-group">
+              <span class="respostServen"></span>
+          </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary" id="yesExcluirArticle">Sim, Excluir</button>
+      </div>
+    </div>
+  </div>
+</div><!--./modal Delete-->
+
+
+
+<!-- Modal Update-->
+<div class="modal fade" id="updateArticle" tabindex="-1" role="dialog" aria-labelledby="updateArticleLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="updateArticleLabel">Atualize os dados e clique em salvar</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <div class="form-group">
+              <label for="Nome">Nome:</label>
+              <input type="input" class="form-control" id="name" placeholder="Nome do Artigo" name="name" required>
+          </div>
+          <div class="form-group">
+              <label for="acquisition">Data de compra:</label>
+              <input type="date" class="form-control" id="acquisition" placeholder="Data de compra" name="acquisition" required>
+          </div>
+          <div class="form-group">
+              <label for="paid">Valor Pago R$:</label>
+              <input type="input" class="form-control" id="paid" placeholder="Valor pago" name="paid" pattern="[0-9]*\.[0-9]{2}" title="Use somente números e ponto. Exe.: 123.10" required>
+          </div>
+          <div class="form-group">
+              <label for="description">Descrição:</label>
+              <textarea class="form-control" id="description" placeholder="Descrição" name="description" required></textarea>
+          </div>
+          <div class="form-group">
+              <input type="hidden" id="idArticle" value="">
+          </div>
+          <div class="form-group">
+              <span class="respostServen"></span>
+          </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Sair</button>
+        <button type="button" class="btn btn-primary" id="yesUpdateArticle">Salvar</button>
+      </div>
+    </div>
+  </div>
+</div><!--./modal Update-->
